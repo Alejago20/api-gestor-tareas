@@ -49,4 +49,4 @@ POST /login → Iniciar sesión.
 =======
 # api-gestor-tareas
 API REST para la gestión de tareas con Node.js, Express y MongoDB Atlas. 
->>>>>>> 39b6b2760948d6a2be6ae53be329d861a984463e
+
