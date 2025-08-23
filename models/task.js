@@ -1,11 +1,6 @@
 import mongoose from "mongoose";
 
 const taskSchema = new mongoose.Schema({
-  usuario_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true
-  },
   nombre: {
     type: String,
     required: true,
@@ -19,29 +14,20 @@ const taskSchema = new mongoose.Schema({
     enum: ["alta", "media", "baja"],
     default: "media"
   },
-  categoria_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Category"
-  },
-  estado: {
+  categoria: {
     type: String,
-    enum: ["pendiente", "en_progreso", "completada"],
-    default: "pendiente"
+    enum: ["Work", "Personal"],
+    default: "Work"
   },
-  creado_en: {
-    type: Date,
-    default: Date.now
-  },
-  actualizado_en: {
-    type: Date,
-    default: Date.now
-  }
-});
+  user: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+    },
 
-// Middleware para actualizar `actualizado_en`
-taskSchema.pre("save", function (next) {
-  this.actualizado_en = Date.now();
-  next();
-});
+},
+  {
+    timestamps: true
+  }
+);
 
 export default mongoose.model("Task", taskSchema);
